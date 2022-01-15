@@ -1,13 +1,17 @@
+import Modal from 'components/Modal/Modal-approve';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import s from './Contacts.module.scss';
 
 const Contact = ({ name, number, id, deleteContact }) => {
   return (
-    <li className={s.Contact}>
-      <p>
-        {name}:{number}
-      </p>
-      <button onClick={() => deleteContact(id)}>Delete</button>
+    <li >
+      <Link className={s.Contact} to={`/${id}`}>
+        <p>
+          {name}:{number}
+        </p>
+        <button onClick={() => deleteContact(id)}>Delete</button>
+      </Link>
     </li>
   );
 };

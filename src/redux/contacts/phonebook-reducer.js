@@ -1,9 +1,20 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
-import { addContacts, addFilter, dellContacts } from './phonebook-actions';
+import {
+  addContacts,
+  updateContacts,
+  addFilter,
+  dellContacts,
+} from './phonebook-actions';
 
 const itemReducer = createReducer([], {
   [addContacts]: (state, action) => action.payload,
+  [updateContacts]: (state, { payload }) =>
+    state.map(el => {
+      if (el.id !== payload.contactId) return el;
+      el[payload.nameType] = payload.upValue;
+      return el;
+    }),
   [dellContacts]: (state, { payload }) =>
     state.filter(contact => contact.id !== payload),
 });
