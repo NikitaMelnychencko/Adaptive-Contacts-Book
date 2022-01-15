@@ -38,15 +38,3 @@
   padding: 20px 0;
   width: 300px;
 }
-.ButtonActions{
-  display: block;
-  padding: 5px 10px;
-  background-color: inherit;
-  border: inherit;
-  background-color:#1286ca;
-  color: $secondary-btn-background;
-  &:focus,
-  &:hover {
-    background-color: $secondary--btn-accent-background;
-  }
-}
