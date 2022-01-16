@@ -6,7 +6,7 @@ export const filterContacts = createSelector(
   (contacts, filter) => {
     const normalizeFilter = filter.toLowerCase();
     return contacts.filter(contact =>
-      contact.nameFirst.toLowerCase().includes(normalizeFilter),
+      contact.firstName.toLowerCase().includes(normalizeFilter),
     );
   },
 );

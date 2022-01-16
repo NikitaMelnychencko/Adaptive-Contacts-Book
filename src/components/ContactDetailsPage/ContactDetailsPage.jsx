@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useRef,useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { filterContacts } from 'redux/contacts/phonebook-selectors';
 import { useParams } from 'react-router-dom';
@@ -7,6 +7,7 @@ import s from './ContactDetailsPage.module.scss';
 import * as actions from 'redux/contacts/phonebook-actions';
 import ContactDetailsPageItem from './ContactDetailsPageItem';
 import Modal from 'components/Modal/Modal-approve';
+import { nanoid } from 'nanoid';
 
 const ContactDetailsPage = () => {
   const contacts = useSelector(filterContacts);
@@ -15,9 +16,15 @@ const ContactDetailsPage = () => {
   const [valueFolder, setValueFolder] = useState('');
   const dispatch = useDispatch();
   const params = useParams();
-
+  
   const [user] = contacts.filter(el => el.id === params.contactId);
   const key = Object.keys(user);
+  const lastStep = useRef('');
+  
+  useEffect(() => {
+    lastStep.current=user
+  }, [user]);
+
   const updateValue = (nameType, upValue) => {
     const updatedContact = { ...user, [nameType]: upValue };
     dispatch(actions.updateContacts(updatedContact));
@@ -52,26 +59,32 @@ const ContactDetailsPage = () => {
   return (
     <>
       <Section title={'Edit contact'}>
+        <ul>
         {key.map(
           userKey =>
             userKey !== 'id' && (
               <ContactDetailsPageItem
+                key={nanoid()}
                 name={userKey}
                 value={user[userKey]}
                 updateValue={updateValue}
                 deleteValue={deleteValue}
+                lastStep={lastStep.current[userKey]}
               />
             ),
-        )}
+        )}</ul>
         {newFolder ? (
           <Modal onClose={showForm}>
             <div>
+              <strong>Enter any value for the new field. Warning:Names-types of fields Email, Number are reserved</strong>
               <form className={s.AddNewFolderBoX} onSubmit={handleSubmit}>
                 <label className={s.Item}>
                   <span>Name Folder</span>
                   <input
                     name="name folder"
                     type="text"
+                    pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                    title="First Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob , Charles"
                     value={nameFolder}
                     onChange={handleChange}
                   />
@@ -81,6 +94,8 @@ const ContactDetailsPage = () => {
                   <input
                     name="value"
                     type="text"
+                    pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                    title="First Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob , Charles"
                     value={valueFolder}
                     onChange={handleChange}
                   />

@@ -4,9 +4,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
 }
+
 .Input{
-  width: 100%;
+  width: 300px;
+  padding: 5px 20px;
+  background-color: $input-background;
 }
 .ButtonActions {
   display: block;
@@ -43,6 +47,7 @@ button+button{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 10px;
 }
 .AddField{
   margin-top: 20px;

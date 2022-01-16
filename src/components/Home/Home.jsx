@@ -21,7 +21,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const formSubmitHandler = data => {
-    let isUniqueName = contacts.find(elem => elem.name.includes(data.name));
+    let isUniqueName = contacts.find(elem => elem.firstName.includes(data.firstName));
 
     if (!isUniqueName) {
       const userId = { id: nanoid() };
@@ -29,7 +29,7 @@ const Home = () => {
     } else {
       const myAlert = alert({
         title: 'Alert',
-        text: `${isUniqueName.name} is already in contacts`,
+        text: `${isUniqueName.firstName} is already in contacts`,
       });
     }
   };

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import s from './Search.module.scss';
 
 const Search = ({ onSubmit }) => {
-  const [nameFirst, setNameFirst] = useState('');
-  const [nameLast, setNameLast] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [number, setNumber] = useState('');
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
@@ -12,10 +12,10 @@ const Search = ({ onSubmit }) => {
     const { name, value } = e.currentTarget;
     switch (name) {
       case 'first_name':
-        setNameFirst(value);
+        setFirstName(value);
         break;
       case 'last_name':
-        setNameLast(value);
+        setLastName(value);
         break;
       case 'number':
         setNumber(value);
@@ -32,12 +32,12 @@ const Search = ({ onSubmit }) => {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    onSubmit({ nameFirst,nameLast, number, email,company });
+    onSubmit({ firstName,lastName, number, email,company });
     reset();
   };
   const reset = () => {
-    setNameFirst('');
-    setNameLast('');
+    setFirstName('');
+    setLastName('');
     setNumber('');
     setEmail('');
     setCompany('');
@@ -53,7 +53,7 @@ const Search = ({ onSubmit }) => {
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="First Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob , Charles"
           required
-          value={nameFirst}
+          value={firstName}
           onChange={handleChange}
         />
       </label>
@@ -65,7 +65,7 @@ const Search = ({ onSubmit }) => {
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Last Name may contain only letters, apostrophe, dash and spaces. For example Williams, Peters, Gibson, Martin, Jordan"
           required
-          value={nameLast}
+          value={lastName}
           onChange={handleChange}
         />
       </label>

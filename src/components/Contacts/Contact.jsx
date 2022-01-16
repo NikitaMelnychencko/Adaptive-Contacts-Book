@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import s from './Contacts.module.scss';
 
-const Contact = ({ nameFirst, number, id, deleteContact }) => {
+const Contact = ({ firstName, number, id, deleteContact }) => {
   return (
     <li className={s.Contact}>
       <Link  to={`/${id}`}>
         <p>
-          {nameFirst}:{number}
+          {firstName}:{number}
         </p>
         
       </Link>
@@ -16,7 +16,7 @@ const Contact = ({ nameFirst, number, id, deleteContact }) => {
   );
 };
 Contact.propTypes = {
-  nameFirst: PropTypes.string.isRequired,
+  firstName: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   deleteContact: PropTypes.func.isRequired,

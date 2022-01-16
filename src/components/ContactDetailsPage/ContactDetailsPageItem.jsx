@@ -1,25 +1,18 @@
 import s from './ContactDetailsPage.module.scss';
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import { useState, useRef } from 'react';
 import Modal from 'components/Modal/Modal-approve';
 import svg from '../../image/svg/proj_svg.svg'
-const ContactDetailsPageItem = ({ name, value, updateValue, deleteValue }) => {
+
+const ContactDetailsPageItem = ({ name, value, updateValue, deleteValue,lastStep }) => {
   const [inpValue, setInpValue] = useState(value);
-  const [disabled, setDisabled] = useState(true);
   const [curentOperation, setCurentOperation] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const lastStep = useRef(value);
 
-  const changeInput = e => {
+
+  const undoAction = e => {
     const { textContent } = e.target;
     switch (textContent) {
-      case 'Change':
-        setDisabled(!disabled);
-        break;
-      case 'Apply':
-        setDisabled(!disabled);
-        updateValue(name, e.target.parentElement.parentElement.children[0].defaultValue);
-        break;
       case 'Cancel':
         toggleModal('Cancel');
         break;
@@ -31,10 +24,9 @@ const ContactDetailsPageItem = ({ name, value, updateValue, deleteValue }) => {
     }
   };
 
-  const undoAction = () => {
+  const undoModalAction = () => {
     switch (curentOperation) {
       case 'Cancel':
-        setDisabled(!disabled);
         setInpValue(value);
         toggleModal();
         break;
@@ -53,32 +45,71 @@ const ContactDetailsPageItem = ({ name, value, updateValue, deleteValue }) => {
   };
 
   const goToLastStep = e => {
-    setInpValue(lastStep.current);
-    updateValue(name, lastStep.current);
+    setInpValue(lastStep);
+    updateValue(name, lastStep);
   };
 
   const toggleModal = value => {
     setShowModal(!showModal);
     setCurentOperation(value);
   };
+  const editName = () => {
+    const firstLetter = name.slice(0, 1);
+    const capitalized = name.replace(firstLetter,firstLetter.toUpperCase());
+    return capitalized.replace(/([a-z])([A-Z])/g, "$1 $2")
+  }
+  const validationInput = () => {
+    const validation = {
+      text: {
+        type: "text",
+        pattern: "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
+      },
+      tel: {
+        type: "tel",
+        pattern: "\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}",
+      },
+      email: {
+        type: "email",
+        pattern: "^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(?:\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*(?:aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$"
+      },
+    }
+    if (name === "number"&&name === "tel") {
+      return validation.tel
+    }
+    else if (name === 'email'&& name === 'e-mail'&& name === 'e-mail') {
+      return validation.email
+    } else {
+      return validation.text
+     }
 
+  }
+  const handelSubmit = e => {
+    e.preventDefault()
+    updateValue(name, e.target[0].value);
+
+  }
   return (
     <>
+      <li className=''>
+      <form  onSubmit={handelSubmit}>
       <label className={s.Item}>
-        {name}:
+        {editName()}:
         <input
+          type={validationInput().type}
           className={s.Input}
+          pattern={validationInput().pattern}
           name={name}
           value={inpValue}
-          disabled={disabled}
           onChange={handleChange}
         />
         <div className={s.ButtonBox}>
-          <button type="button" onClick={changeInput}>
-            {disabled === true ? 'Change' : 'Apply'}
-          </button>
-          <button type="button" onClick={changeInput}>
-            {disabled === true ? 'Delete' : 'Cancel'}
+            <button type='submit'>
+            Apply
+            </button>
+            <button type="button" onClick={undoAction}>Cancel</button>
+
+          <button type="button" onClick={undoAction}>
+            Delete
           </button>
           <button type="button" onClick={goToLastStep}>
             <svg className={s.svgUndo}>
@@ -86,23 +117,23 @@ const ContactDetailsPageItem = ({ name, value, updateValue, deleteValue }) => {
             </svg>
           </button>
         </div>
-      </label>
+      </label></form></li>
       {showModal && (
         <Modal onClose={toggleModal}>
           <>
             <button
               type="button"
               className={s.ButtonActions}
-              onClick={undoAction}
+              onClick={undoModalAction}
             >
               Apply
             </button>
             <button
               type="button"
               className={s.ButtonActions}
-              onClick={toggleModal}
+              onClick={undoModalAction}
             >
-              cancel
+              Cancel
             </button>
           </>
         </Modal>
@@ -110,4 +141,5 @@ const ContactDetailsPageItem = ({ name, value, updateValue, deleteValue }) => {
     </>
   );
 };
+
 export default ContactDetailsPageItem;

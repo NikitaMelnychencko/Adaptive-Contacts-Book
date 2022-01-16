@@ -8,7 +8,7 @@ const Contacts = ({ contacts, deleteContact }) => {
         contacts.map(item => (
           <Contact
             key={item.id}
-            nameFirst={item.nameFirst}
+            firstName={item.firstName}
             number={item.number}
             id={item.id}
             deleteContact={deleteContact}
