@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import Section from 'components/Section/Section';
 import s from './ContactDetailsPage.module.scss';
 import * as actions from 'redux/contacts/phonebook-actions';
-import ContactDetailsPageItem from './ContactDetailsPageItem';
+import ContactDetailsPageItem from '../../components/ContactDetailsPageItem/ContactDetailsPageItem';
 import Modal from 'components/Modal/Modal-approve';
 import { nanoid } from 'nanoid';
 
@@ -19,7 +19,7 @@ const ContactDetailsPage = () => {
   
   const [user] = contacts.filter(el => el.id === params.contactId);
   const key = Object.keys(user);
-  const lastStep = useRef('');
+  const lastStep = useRef(user);
   
   useEffect(() => {
     lastStep.current=user

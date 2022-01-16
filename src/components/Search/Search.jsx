@@ -8,6 +8,7 @@ const Search = ({ onSubmit }) => {
   const [number, setNumber] = useState('');
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
+
   const handleChange = e => {
     const { name, value } = e.currentTarget;
     switch (name) {
@@ -30,11 +31,13 @@ const Search = ({ onSubmit }) => {
         return;
     }
   };
+
   const handleSubmit = e => {
     e.preventDefault();
     onSubmit({ firstName,lastName, number, email,company });
     reset();
   };
+  
   const reset = () => {
     setFirstName('');
     setLastName('');

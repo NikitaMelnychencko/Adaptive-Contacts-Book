@@ -1,4 +1,4 @@
-import s from './ContactDetailsPage.module.scss';
+import s from './ContactDetailsPageItem.module.scss';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Modal from 'components/Modal/Modal-approve';
@@ -14,7 +14,6 @@ const ContactDetailsPageItem = ({
   const [inpValue, setInpValue] = useState(value);
   const [curentOperation, setCurentOperation] = useState('');
   const [showModal, setShowModal] = useState(false);
-
   const undoAction = e => {
     const { textContent } = e.target;
     switch (textContent) {
@@ -107,15 +106,32 @@ const ContactDetailsPageItem = ({
               onChange={handleChange}
             />
             <div className={s.ButtonBox}>
-              <button className={s.ApplyBtn} type="submit" aria-label='Apply'>Apply</button>
-              <button type="button" className={s.CancelBtn} onClick={undoAction} aria-label='Cancel'>
+              <button className={s.ApplyBtn} type="submit" aria-label="Apply">
+                Apply
+              </button>
+              <button
+                type="button"
+                className={s.CancelBtn}
+                onClick={undoAction}
+                aria-label="Cancel"
+              >
                 Cancel
               </button>
 
-              <button className={s.deleteBtn} type="button" onClick={undoAction} aria-label='Delete'>
+              <button
+                className={s.deleteBtn}
+                type="button"
+                onClick={undoAction}
+                aria-label="Delete"
+              >
                 Delete
               </button>
-              <button type="button" className={s.LastStep} onClick={goToLastStep} aria-label='Undo'>
+              <button
+                type="button"
+                className={s.LastStep}
+                onClick={goToLastStep}
+                aria-label="Undo"
+              >
                 <svg className={s.svgUndo}>
                   <use href={`${svg}#icon-undo`}></use>
                 </svg>
@@ -126,24 +142,24 @@ const ContactDetailsPageItem = ({
       </li>
       {showModal && (
         <Modal onClose={toggleModal}>
-          <>
-            <button
-              type="button"
-              className={s.ApplyBtn}
-              onClick={undoModalAction}
-              aria-label='Apply'
-            >
-              Apply
-            </button>
-            <button
-              type="button"
-              className={s.CancelBtn}
-              onClick={undoModalAction}
-              aria-label='Cancel'
-            >
-              Cancel
-            </button>
-          </>
+            <>
+              <button
+                type="button"
+                className={s.ApplyBtn}
+                onClick={undoModalAction}
+                aria-label="Apply"
+              >
+                Apply
+              </button>
+              <button
+                type="button"
+                className={s.CancelBtn}
+                onClick={undoModalAction}
+                aria-label="Cancel"
+              >
+                Cancel
+              </button>
+            </>
         </Modal>
       )}
     </>
@@ -152,7 +168,7 @@ const ContactDetailsPageItem = ({
 ContactDetailsPageItem.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  lastStep: PropTypes.string.isRequired,
+  lastStep: PropTypes.string,
   deleteValue: PropTypes.func.isRequired,
 };
 

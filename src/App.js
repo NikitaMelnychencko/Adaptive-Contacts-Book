@@ -4,12 +4,12 @@ import { BallTriangle } from 'react-loader-spinner';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 const Home = lazy(() =>
-  import('components/Home/Home' /* webpackChunkName: "Home" */),
+  import('views/Home/Home' /* webpackChunkName: "Home" */),
 );
 
 const ContactDetailsPage = lazy(() =>
   import(
-    'components/ContactDetailsPage/ContactDetailsPage' /* webpackChunkName: "ContactDetailsPage" */
+    'views/ContactDetailsPage/ContactDetailsPage' /* webpackChunkName: "ContactDetailsPage" */
   ),
 );
 const App = () => {
