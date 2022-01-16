@@ -3,16 +3,28 @@ import PropTypes from 'prop-types';
 import s from './Search.module.scss';
 
 const Search = ({ onSubmit }) => {
-  const [name, setName] = useState('');
+  const [nameFirst, setNameFirst] = useState('');
+  const [nameLast, setNameLast] = useState('');
   const [number, setNumber] = useState('');
+  const [email, setEmail] = useState('');
+  const [company, setCompany] = useState('');
   const handleChange = e => {
     const { name, value } = e.currentTarget;
     switch (name) {
-      case 'name':
-        setName(value);
+      case 'first_name':
+        setNameFirst(value);
+        break;
+      case 'last_name':
+        setNameLast(value);
         break;
       case 'number':
         setNumber(value);
+        break;
+      case 'email':
+        setEmail(value);
+        break;
+      case 'company':
+        setCompany(value);
         break;
       default:
         return;
@@ -20,30 +32,45 @@ const Search = ({ onSubmit }) => {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    onSubmit({ name, number });
+    onSubmit({ nameFirst,nameLast, number, email,company });
     reset();
   };
   const reset = () => {
-    setName('');
+    setNameFirst('');
+    setNameLast('');
     setNumber('');
+    setEmail('');
+    setCompany('');
   };
 
   return (
     <form className={s.SearchForm} onSubmit={handleSubmit}>
       <label className={s.Form}>
-        Name
+        <span>First Name</span>
         <input
           type="text"
-          name="name"
+          name="first_name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          title="First Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob , Charles"
           required
-          value={name}
+          value={nameFirst}
           onChange={handleChange}
         />
       </label>
       <label className={s.Form}>
-        Number
+        <span>Last Name</span>
+        <input
+          type="text"
+          name="last_name"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Last Name may contain only letters, apostrophe, dash and spaces. For example Williams, Peters, Gibson, Martin, Jordan"
+          required
+          value={nameLast}
+          onChange={handleChange}
+        />
+      </label>
+      <label className={s.Form}>
+        <span>Number</span>
         <input
           type="tel"
           name="number"
@@ -52,6 +79,28 @@ const Search = ({ onSubmit }) => {
           required
           value={number}
           onChange={handleChange}
+        />
+      </label>
+      <label className={s.Form}>
+          <span >Email</span>
+        <input
+          type="email"
+          name="email"
+          pattern="^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(?:\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*(?:aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$"
+          title='Email must be built by username@hostname and can consist of letters, numbers. For example tropic21@gmail.com'
+          value={email}
+          onChange={handleChange}
+          required
+        />
+      </label>
+      <label className={s.Form}>
+          <span >Company</span>
+          <input type="text"
+          name="company"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          value={company}
+          onChange={handleChange}
+          required
         />
       </label>
       <button className={s.Button} type="submit">

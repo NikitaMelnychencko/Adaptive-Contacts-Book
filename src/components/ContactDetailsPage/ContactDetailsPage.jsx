@@ -40,7 +40,8 @@ const ContactDetailsPage = () => {
     }
   };
   const handleSubmit = () => {
-    const updatedContact = { ...user, [nameFolder]: valueFolder };
+    
+    const updatedContact = { ...user, [nameFolder.toLowerCase()]: valueFolder };
     dispatch(actions.updateContacts(updatedContact));
     showForm()
   };

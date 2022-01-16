@@ -4,8 +4,12 @@
 }
 .Farm{
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
-
+.Input{
+  width: 100%;
+}
 .ButtonActions {
   display: block;
   padding: 5px 10px;
@@ -18,4 +22,8 @@
   &:hover {
     background-color: $secondary--btn-accent-background;
   }
+}
+.ButtonBox{
+  display: flex;
+  
 }
