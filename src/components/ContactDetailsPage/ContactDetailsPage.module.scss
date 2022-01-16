@@ -1,8 +1,6 @@
 @import 'style/shared';
-.AddNewFolderBoX{
-  display: flex;
-}
-.Farm{
+
+.Item{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -25,5 +23,30 @@
 }
 .ButtonBox{
   display: flex;
-  
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 5px;
+
+}
+button+button{
+  margin-left: 15px;
+}
+.svgUndo{
+  width: 20px;
+  height: 20px;
+}
+.AddBtnFieldBox{
+  margin-top: 10px;
+}
+.AddNewFolderBoX {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.AddField{
+  margin-top: 20px;
+}
+.AddField_UndoBtn{
+  margin-left: 10px;
 }

@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { filterContacts,  } from 'redux/contacts/phonebook-selectors';
-import {
-  useParams
-} from 'react-router-dom';
+import { filterContacts } from 'redux/contacts/phonebook-selectors';
+import { useParams } from 'react-router-dom';
 import Section from 'components/Section/Section';
 import s from './ContactDetailsPage.module.scss';
 import * as actions from 'redux/contacts/phonebook-actions';
 import ContactDetailsPageItem from './ContactDetailsPageItem';
+import Modal from 'components/Modal/Modal-approve';
 
 const ContactDetailsPage = () => {
   const contacts = useSelector(filterContacts);
@@ -40,20 +39,19 @@ const ContactDetailsPage = () => {
     }
   };
   const handleSubmit = () => {
-    
     const updatedContact = { ...user, [nameFolder.toLowerCase()]: valueFolder };
     dispatch(actions.updateContacts(updatedContact));
-    showForm()
+    showForm();
   };
-  const deleteValue = (nameType) => {
-    const updateUser={...user}
-    delete updateUser[nameType]
+  const deleteValue = nameType => {
+    const updateUser = { ...user };
+    delete updateUser[nameType];
     const updatedContact = { ...updateUser };
     dispatch(actions.updateContacts(updatedContact));
   };
   return (
     <>
-      <Section>
+      <Section title={'Edit contact'}>
         {key.map(
           userKey =>
             userKey !== 'id' && (
@@ -66,24 +64,42 @@ const ContactDetailsPage = () => {
             ),
         )}
         {newFolder ? (
-          <div>
-            <form className={s.AddNewFolderBoX} onSubmit={handleSubmit}>
-              <label>
-                <span>Name Folder</span>
-                <input name='name folder' type="text" value={nameFolder}  onChange={handleChange}/>
-              </label>
-              <label>
-                <span>Value</span>
-                <input name='value' type="text" value={valueFolder} onChange={handleChange}/>
-              </label>
-              <button type="submit">Add</button>
-            </form>
-            <button type="button" onClick={showForm}>
-              Cancel
-            </button>
-          </div>
+          <Modal onClose={showForm}>
+            <div>
+              <form className={s.AddNewFolderBoX} onSubmit={handleSubmit}>
+                <label className={s.Item}>
+                  <span>Name Folder</span>
+                  <input
+                    name="name folder"
+                    type="text"
+                    value={nameFolder}
+                    onChange={handleChange}
+                  />
+                </label>
+                <label className={s.Item}>
+                  <span>Value</span>
+                  <input
+                    name="value"
+                    type="text"
+                    value={valueFolder}
+                    onChange={handleChange}
+                  />
+                </label>
+                <div className={s.AddBtnFieldBox}>
+                  <button type="submit">Add</button>
+                  <button
+                    className={s.AddField_UndoBtn}
+                    type="button"
+                    onClick={showForm}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </Modal>
         ) : (
-          <button type="button" onClick={showForm}>
+          <button type="button" className={s.AddField} onClick={showForm}>
             Add field
           </button>
         )}

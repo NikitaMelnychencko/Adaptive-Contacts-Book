@@ -2,7 +2,7 @@ import s from './ContactDetailsPage.module.scss';
 import PropTypes from 'prop-types';
 import { useState, useRef } from 'react';
 import Modal from 'components/Modal/Modal-approve';
-
+import svg from '../../image/svg/proj_svg.svg'
 const ContactDetailsPageItem = ({ name, value, updateValue, deleteValue }) => {
   const [inpValue, setInpValue] = useState(value);
   const [disabled, setDisabled] = useState(true);
@@ -12,14 +12,13 @@ const ContactDetailsPageItem = ({ name, value, updateValue, deleteValue }) => {
 
   const changeInput = e => {
     const { textContent } = e.target;
-
     switch (textContent) {
       case 'Change':
         setDisabled(!disabled);
         break;
       case 'Apply':
         setDisabled(!disabled);
-        updateValue(name, e.target.previousElementSibling.defaultValue);
+        updateValue(name, e.target.parentElement.parentElement.children[0].defaultValue);
         break;
       case 'Cancel':
         toggleModal('Cancel');
@@ -65,7 +64,7 @@ const ContactDetailsPageItem = ({ name, value, updateValue, deleteValue }) => {
 
   return (
     <>
-      <label className={s.Farm}>
+      <label className={s.Item}>
         {name}:
         <input
           className={s.Input}
@@ -82,7 +81,9 @@ const ContactDetailsPageItem = ({ name, value, updateValue, deleteValue }) => {
             {disabled === true ? 'Delete' : 'Cancel'}
           </button>
           <button type="button" onClick={goToLastStep}>
-            B
+            <svg className={s.svgUndo}>
+              <use href={`${svg}#icon-undo`}></use>
+            </svg>
           </button>
         </div>
       </label>
