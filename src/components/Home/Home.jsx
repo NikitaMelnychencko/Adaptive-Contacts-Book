@@ -61,14 +61,14 @@ const Home = () => {
           <>
             <button
               type="button"
-              className={s.ButtonActions}
+              className={s.DeleteBtn}
               onClick={deleteContact}
             >
               delete
             </button>
             <button
               type="button"
-              className={s.ButtonActions}
+              className={s.CancelBtn}
               onClick={toggleModal}
             >
               cancel

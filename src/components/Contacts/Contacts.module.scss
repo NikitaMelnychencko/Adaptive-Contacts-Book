@@ -17,8 +17,8 @@
 }
 .Link{
   text-decoration: none;
-  color: #000000;
+  color: $secondary-text-color;
   .Contact:hover &{
-    color: white;
+    color: $primary-accent-text-color;
   }
 }

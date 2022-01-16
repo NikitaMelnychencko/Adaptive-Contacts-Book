@@ -1,6 +1,6 @@
 import s from './ContactDetailsPage.module.scss';
-import PropTypes, { string } from 'prop-types';
-import { useState, useRef } from 'react';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
 import Modal from 'components/Modal/Modal-approve';
 import svg from '../../image/svg/proj_svg.svg';
 
@@ -129,14 +129,14 @@ const ContactDetailsPageItem = ({
           <>
             <button
               type="button"
-              className={s.ButtonActions}
+              className={s.ApplyBtn}
               onClick={undoModalAction}
             >
               Apply
             </button>
             <button
               type="button"
-              className={s.ButtonActions}
+              className={s.CancelBtn}
               onClick={undoModalAction}
             >
               Cancel
@@ -146,6 +146,12 @@ const ContactDetailsPageItem = ({
       )}
     </>
   );
+};
+ContactDetailsPageItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  lastStep: PropTypes.string.isRequired,
+  deleteValue: PropTypes.func.isRequired,
 };
 
 export default ContactDetailsPageItem;

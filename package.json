@@ -2,7 +2,6 @@
   "name": "Adaptive-Contacts-Book",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://NikitaMelnychencko.github.io/Adaptive-Contacts-Book",
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
     "@testing-library/jest-dom": "^5.15.1",
@@ -29,7 +28,7 @@
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "netlify deploy -p"
   },
   "eslintConfig": {
     "extends": [

@@ -13,12 +13,10 @@
   padding: 5px 20px;
   background-color: $input-background;
 }
+
 .ButtonActions {
-  display: block;
-  padding: 5px 10px;
-  background-color: inherit;
-  border: inherit;
-  background-color: #1286ca;
+  @extend %button;
+  background-color: $btn-background;
   color: $secondary-btn-background;
 
   &:focus,
@@ -27,27 +25,19 @@
   }
 }
 .ApplyBtn {
-  height: 33px;
-  padding: 5px 10px;
-  background-color: inherit;
-  border: inherit;
-  border-radius: 10px;
-  background-color: #12ac3e;
-  color: #ffffff;
+  @extend %button;
+  background-color: $apply-btn-background;
+  color: $primary-text-color;
 
   &:focus,
   &:hover {
-    background-color: #05922d;
+    background-color: $apply-btn-accent-background;
   }
 }
 .deleteBtn {
-  height: 33px;
-  padding: 5px 10px;
-  background-color: inherit;
-  border: inherit;
-  border-radius: 10px;
-  background-color: #f80505;
-  color: #ffffff;
+  @extend %button;
+  background-color: $delete-btn-background;
+  color: $primary-text-color;
 
   &:focus,
   &:hover {
@@ -55,30 +45,22 @@
   }
 }
 .CancelBtn {
-  height: 33px;
-  padding: 5px 10px;
-  background-color: inherit;
-  border: inherit;
-  border-radius: 10px;
-  background-color: #1286ca;
-  color: #ffffff;
+  @extend %button;
+  background-color: $btn-background;
+  color: $primary-text-color;
 
   &:focus,
   &:hover {
-    background-color: #065a8a;
+    background-color: $btn-accent-background;
   }
 }
 .LastStep {
-  height: 33px;
-  padding: 5px 10px;
-  background-color: inherit;
-  border: inherit;
-  border-radius: 10px;
-  background-color: #bbb3b3;
+  @extend %button;
+  background-color: $lastStep-btn-background;
 
   &:focus,
   &:hover {
-    background-color: #acaaaa;
+    background-color: $lastStep-btn-accent-background;
   }
 }
 .ButtonBox {
@@ -98,12 +80,12 @@ button + button {
   border: inherit;
   border-radius: 10px;
   height: 33px;
-  background-color: #1286ca;
-  color: #ffffff;
+  background-color: $btn-background;
+  color: $primary-text-color;
 
   &:focus,
   &:hover {
-    background-color: #065a8a;
+    background-color: $btn-accent-background;
   }
 }
 .svgUndo {
