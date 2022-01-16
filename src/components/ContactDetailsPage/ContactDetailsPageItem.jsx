@@ -45,7 +45,7 @@ const ContactDetailsPageItem = ({
   };
 
   const handleChange = e => {
-    const { name, value } = e.currentTarget;
+    const { value } = e.currentTarget;
     setInpValue(value);
   };
 
