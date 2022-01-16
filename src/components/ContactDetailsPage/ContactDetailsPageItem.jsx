@@ -107,15 +107,15 @@ const ContactDetailsPageItem = ({
               onChange={handleChange}
             />
             <div className={s.ButtonBox}>
-              <button className={s.ApplyBtn} type="submit">Apply</button>
-              <button type="button" className={s.CancelBtn} onClick={undoAction}>
+              <button className={s.ApplyBtn} type="submit" aria-label='Apply'>Apply</button>
+              <button type="button" className={s.CancelBtn} onClick={undoAction} aria-label='Cancel'>
                 Cancel
               </button>
 
-              <button className={s.deleteBtn} type="button" onClick={undoAction}>
+              <button className={s.deleteBtn} type="button" onClick={undoAction} aria-label='Delete'>
                 Delete
               </button>
-              <button type="button" className={s.LastStep} onClick={goToLastStep}>
+              <button type="button" className={s.LastStep} onClick={goToLastStep} aria-label='Undo'>
                 <svg className={s.svgUndo}>
                   <use href={`${svg}#icon-undo`}></use>
                 </svg>
@@ -131,6 +131,7 @@ const ContactDetailsPageItem = ({
               type="button"
               className={s.ApplyBtn}
               onClick={undoModalAction}
+              aria-label='Apply'
             >
               Apply
             </button>
@@ -138,6 +139,7 @@ const ContactDetailsPageItem = ({
               type="button"
               className={s.CancelBtn}
               onClick={undoModalAction}
+              aria-label='Cancel'
             >
               Cancel
             </button>

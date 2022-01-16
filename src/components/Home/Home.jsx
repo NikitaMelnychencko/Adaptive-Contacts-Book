@@ -63,15 +63,17 @@ const Home = () => {
               type="button"
               className={s.DeleteBtn}
               onClick={deleteContact}
+              aria-label='Delete'
             >
-              delete
+              Delete
             </button>
             <button
               type="button"
               className={s.CancelBtn}
               onClick={toggleModal}
+              aria-label='Cancel'
             >
-              cancel
+              Cancel
             </button>
           </>
         </Modal>

@@ -11,7 +11,7 @@ const Contact = ({ firstName, number, id, deleteContact }) => {
         </p>
         
       </Link>
-      <button onClick={() => deleteContact(id)}>Delete</button>
+      <button onClick={() => deleteContact(id)} aria-label='Delete'>Delete</button>
     </li>
   );
 };

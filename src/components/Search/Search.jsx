@@ -103,7 +103,7 @@ const Search = ({ onSubmit }) => {
           required
         />
       </label>
-      <button className={s.Button} type="submit">
+      <button className={s.Button} type="submit" aria-label='Add contact'>
         Add contact
       </button>
     </form>

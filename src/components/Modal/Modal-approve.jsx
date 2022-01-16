@@ -28,7 +28,7 @@ const Modal = ({  onClose,children }) => {
   return createPortal(
     <div className={s.Overlay} onClick={handleBackdropClick}>
       <div className={s.Modal}>
-        <button type="button" className={s.Button} onClick={onClose}>
+        <button type="button" className={s.Button} onClick={onClose} aria-label='Close'>
           Close
         </button>
         <div className={s.Warper}>

@@ -103,11 +103,12 @@ const ContactDetailsPage = () => {
                   />
                 </label>
                 <div className={s.AddBtnFieldBox}>
-                  <button className={s.ApplyBtn} type="submit">Add</button>
+                  <button className={s.ApplyBtn} type="submit" aria-label='Add'>Add</button>
                   <button
                     className={s.CancelBtn}
                     type="button"
                     onClick={showForm}
+                    aria-label='Cancel'
                   >
                     Cancel
                   </button>
@@ -116,7 +117,7 @@ const ContactDetailsPage = () => {
             </div>
           </Modal>
         ) : (
-          <button type="button" className={s.AddField} onClick={showForm}>
+          <button type="button" className={s.AddField} aria-label='Add field' onClick={showForm}>
             Add field
           </button>
         )}
