@@ -1,13 +1,14 @@
 @import 'style/shared';
-
-.Item{
+.FormList_Item + .FormList_Item {
+  margin-top: 10px;
+}
+.Item {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-
 }
 
-.Input{
+.Input {
   width: 300px;
   padding: 5px 20px;
   background-color: $input-background;
@@ -25,22 +26,91 @@
     background-color: $secondary--btn-accent-background;
   }
 }
-.ButtonBox{
+.ApplyBtn {
+  height: 33px;
+  padding: 5px 10px;
+  background-color: inherit;
+  border: inherit;
+  border-radius: 10px;
+  background-color: #12ac3e;
+  color: #ffffff;
+
+  &:focus,
+  &:hover {
+    background-color: #05922d;
+  }
+}
+.deleteBtn {
+  height: 33px;
+  padding: 5px 10px;
+  background-color: inherit;
+  border: inherit;
+  border-radius: 10px;
+  background-color: #f80505;
+  color: #ffffff;
+
+  &:focus,
+  &:hover {
+    background-color: #ae4848;
+  }
+}
+.CancelBtn {
+  height: 33px;
+  padding: 5px 10px;
+  background-color: inherit;
+  border: inherit;
+  border-radius: 10px;
+  background-color: #1286ca;
+  color: #ffffff;
+
+  &:focus,
+  &:hover {
+    background-color: #065a8a;
+  }
+}
+.LastStep {
+  height: 33px;
+  padding: 5px 10px;
+  background-color: inherit;
+  border: inherit;
+  border-radius: 10px;
+  background-color: #bbb3b3;
+
+  &:focus,
+  &:hover {
+    background-color: #acaaaa;
+  }
+}
+.ButtonBox {
   display: flex;
   justify-content: center;
   flex-direction: row;
   width: 100%;
   margin-top: 5px;
-
 }
-button+button{
+button + button {
   margin-left: 15px;
 }
-.svgUndo{
+
+.AddField {
+  padding: 5px 10px;
+  background-color: inherit;
+  border: inherit;
+  border-radius: 10px;
+  height: 33px;
+  background-color: #1286ca;
+  color: #ffffff;
+
+  &:focus,
+  &:hover {
+    background-color: #065a8a;
+  }
+}
+.svgUndo {
   width: 20px;
   height: 20px;
 }
-.AddBtnFieldBox{
+.AddBtnFieldBox {
   margin-top: 10px;
 }
 .AddNewFolderBoX {
@@ -49,9 +119,9 @@ button+button{
   justify-content: center;
   margin-top: 10px;
 }
-.AddField{
+.AddField {
   margin-top: 20px;
 }
-.AddField_UndoBtn{
+.AddField_UndoBtn {
   margin-left: 10px;
 }

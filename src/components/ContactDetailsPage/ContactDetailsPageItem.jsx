@@ -2,13 +2,18 @@ import s from './ContactDetailsPage.module.scss';
 import PropTypes, { string } from 'prop-types';
 import { useState, useRef } from 'react';
 import Modal from 'components/Modal/Modal-approve';
-import svg from '../../image/svg/proj_svg.svg'
+import svg from '../../image/svg/proj_svg.svg';
 
-const ContactDetailsPageItem = ({ name, value, updateValue, deleteValue,lastStep }) => {
+const ContactDetailsPageItem = ({
+  name,
+  value,
+  updateValue,
+  deleteValue,
+  lastStep,
+}) => {
   const [inpValue, setInpValue] = useState(value);
   const [curentOperation, setCurentOperation] = useState('');
   const [showModal, setShowModal] = useState(false);
-
 
   const undoAction = e => {
     const { textContent } = e.target;
@@ -55,69 +60,70 @@ const ContactDetailsPageItem = ({ name, value, updateValue, deleteValue,lastStep
   };
   const editName = () => {
     const firstLetter = name.slice(0, 1);
-    const capitalized = name.replace(firstLetter,firstLetter.toUpperCase());
-    return capitalized.replace(/([a-z])([A-Z])/g, "$1 $2")
-  }
+    const capitalized = name.replace(firstLetter, firstLetter.toUpperCase());
+    return capitalized.replace(/([a-z])([A-Z])/g, '$1 $2');
+  };
   const validationInput = () => {
     const validation = {
       text: {
-        type: "text",
+        type: 'text',
         pattern: "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
       },
       tel: {
-        type: "tel",
-        pattern: "\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}",
+        type: 'tel',
+        pattern:
+          '+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}',
       },
       email: {
-        type: "email",
-        pattern: "^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(?:\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*(?:aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$"
+        type: 'email',
+        pattern:
+          "^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(?:.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@(?:[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?.)*(?:aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$",
       },
-    }
-    if (name === "number"&&name === "tel") {
-      return validation.tel
-    }
-    else if (name === 'email'&& name === 'e-mail'&& name === 'e-mail') {
-      return validation.email
+    };
+    if (name === 'number' && name === 'tel') {
+      return validation.tel;
+    } else if (name === 'email' && name === 'e-mail' && name === 'e-mail') {
+      return validation.email;
     } else {
-      return validation.text
-     }
-
-  }
+      return validation.text;
+    }
+  };
   const handelSubmit = e => {
-    e.preventDefault()
+    e.preventDefault();
     updateValue(name, e.target[0].value);
-
-  }
+  };
   return (
     <>
-      <li className=''>
-      <form  onSubmit={handelSubmit}>
-      <label className={s.Item}>
-        {editName()}:
-        <input
-          type={validationInput().type}
-          className={s.Input}
-          pattern={validationInput().pattern}
-          name={name}
-          value={inpValue}
-          onChange={handleChange}
-        />
-        <div className={s.ButtonBox}>
-            <button type='submit'>
-            Apply
-            </button>
-            <button type="button" onClick={undoAction}>Cancel</button>
+      <li className={s.FormList_Item}>
+        <form onSubmit={handelSubmit}>
+          <label className={s.Item}>
+            {editName()}:
+            <input
+              type={validationInput().type}
+              className={s.Input}
+              pattern={validationInput().pattern}
+              name={name}
+              value={inpValue}
+              onChange={handleChange}
+            />
+            <div className={s.ButtonBox}>
+              <button className={s.ApplyBtn} type="submit">Apply</button>
+              <button type="button" className={s.CancelBtn} onClick={undoAction}>
+                Cancel
+              </button>
 
-          <button type="button" onClick={undoAction}>
-            Delete
-          </button>
-          <button type="button" onClick={goToLastStep}>
-            <svg className={s.svgUndo}>
-              <use href={`${svg}#icon-undo`}></use>
-            </svg>
-          </button>
-        </div>
-      </label></form></li>
+              <button className={s.deleteBtn} type="button" onClick={undoAction}>
+                Delete
+              </button>
+              <button type="button" className={s.LastStep} onClick={goToLastStep}>
+                <svg className={s.svgUndo}>
+                  <use href={`${svg}#icon-undo`}></use>
+                </svg>
+              </button>
+            </div>
+          </label>
+        </form>
+      </li>
       {showModal && (
         <Modal onClose={toggleModal}>
           <>

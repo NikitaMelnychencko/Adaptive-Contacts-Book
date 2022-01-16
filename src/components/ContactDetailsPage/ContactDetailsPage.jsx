@@ -59,7 +59,7 @@ const ContactDetailsPage = () => {
   return (
     <>
       <Section title={'Edit contact'}>
-        <ul>
+        <ul className={s.FormList}>
         {key.map(
           userKey =>
             userKey !== 'id' && (
@@ -81,6 +81,7 @@ const ContactDetailsPage = () => {
                 <label className={s.Item}>
                   <span>Name Folder</span>
                   <input
+                    className={s.Input}
                     name="name folder"
                     type="text"
                     pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -92,6 +93,7 @@ const ContactDetailsPage = () => {
                 <label className={s.Item}>
                   <span>Value</span>
                   <input
+                    className={s.Input}
                     name="value"
                     type="text"
                     pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -101,9 +103,9 @@ const ContactDetailsPage = () => {
                   />
                 </label>
                 <div className={s.AddBtnFieldBox}>
-                  <button type="submit">Add</button>
+                  <button className={s.ApplyBtn} type="submit">Add</button>
                   <button
-                    className={s.AddField_UndoBtn}
+                    className={s.CancelBtn}
                     type="button"
                     onClick={showForm}
                   >

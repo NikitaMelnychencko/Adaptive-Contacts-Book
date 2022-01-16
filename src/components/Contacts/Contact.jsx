@@ -5,7 +5,7 @@ import s from './Contacts.module.scss';
 const Contact = ({ firstName, number, id, deleteContact }) => {
   return (
     <li className={s.Contact}>
-      <Link  to={`/${id}`}>
+      <Link className={s.Link} to={`/${id}`}>
         <p>
           {firstName}:{number}
         </p>

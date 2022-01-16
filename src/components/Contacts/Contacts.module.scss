@@ -9,8 +9,16 @@
   &:hover {
     background-color: $primary-accent-background;
     color: $primary-text-color;
+
   }
   & + .Contact {
     margin-top: 10px;
+  }
+}
+.Link{
+  text-decoration: none;
+  color: #000000;
+  .Contact:hover &{
+    color: white;
   }
 }
